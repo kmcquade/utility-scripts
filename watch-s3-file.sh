@@ -138,6 +138,7 @@ parseArgs(){
     CACHE_DIR=${CACHE_DIR:-/tmp/.s3.cache}
     S3_BUCKET=$(echo $S3_URL | sed 's/s3:\/\///g' | cut -d'/' -f 1)
     S3_BUCKET_LOCATION="$(aws s3api get-bucket-location --bucket ${S3_BUCKET} --output text)"
+    [[ "$S3_BUCKET_LOCATION" == 'None' ]] && S3_BUCKET_LOCATION='us-east-1'
     FILE_BASENAME=$(basename $FILENAME)
 }
 

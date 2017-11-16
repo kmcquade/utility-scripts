@@ -103,6 +103,11 @@ parseArgs(){
         FIRST_TIME_EXECUTE=YES
         shift # past argument
         ;;
+
+        -h|--help)
+        HELP=YES
+        shift # past argument
+        ;;
         
         --debug)
         DEBUG=YES
@@ -115,6 +120,10 @@ parseArgs(){
     esac
     done
     set -- "${POSITIONAL[@]}" # restore positional parameters
+
+    if [ -n "$HELP" ]; then
+        usage
+    fi
 
     if [[ -z "$S3_URL" ]]; then 
         (>&2 echo "Error: --s3-url must be provided")

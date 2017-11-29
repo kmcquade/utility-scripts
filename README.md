@@ -1,3 +1,3 @@
-# aws-util-scripts
+# utility-scripts
 
-Some AWS utility scripts.
+Some utility scripts.

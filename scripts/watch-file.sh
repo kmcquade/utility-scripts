@@ -8,7 +8,7 @@ usage(){
 Usage: $program [options...] --url <url> --file-name <destination-file>
 Options:
 -u, --url <url>                                     - file to be watched and fetched. file://<file>, s3://<file>, http[s]://<file>
--f, --file-name <destination-file>                  - Absolute destination filename
+-f, --filename <destination-file>                  - Absolute destination filename
 -d,--cache-dir <cache-dir>                          - Cached directory (Default: /tmp/.s3.cache)
 --polling-interval <polling-interval-in-seconds>]   - Polling interval in seconds (Default 30)
 --command <command-to-execute-on-change>            - Command to be executed if the file was changed
@@ -75,8 +75,8 @@ fetch_config_s3(){
         S3_BUCKET_LOCATION="$(aws s3api get-bucket-location --bucket ${S3_BUCKET} --output text)"
         [[ "$S3_BUCKET_LOCATION" == 'None' ]] && S3_BUCKET_LOCATION='us-east-1'
     fi    
-    debug "Fetching ${S3_URL} to ${CACHE_DIR}"
-    aws --region=${S3_BUCKET_LOCATION} s3 cp ${S3_URL} ${CACHE_DIR}/${FILE_BASENAME} --quiet
+    debug "Fetching ${URL} to ${CACHE_DIR}"
+    aws --region=${S3_BUCKET_LOCATION} s3 cp ${URL} ${CACHE_DIR}/${FILE_BASENAME} --quiet
 }
 
 exec_command(){

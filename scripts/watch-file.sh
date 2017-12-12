@@ -218,6 +218,6 @@ while true; do
     fetch_config && RES=$? || RES=$?
     if [ "$RES" == 30 ]; then
         log "Checksum was changed, executing command"
-        exec_command
+        exec_command || true
     fi
 done

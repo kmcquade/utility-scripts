@@ -117,6 +117,7 @@ if [ $STATUS_RES != 0 ]; then
 else
     echo "Synching {ssh_url} to {clone_dir}"
     git --work-tree {clone_dir} --git-dir {clone_dir}/.git fetch --all --prune >> /dev/null 2>&1
+    git --work-tree {clone_dir} --git-dir {clone_dir}/.git pull >> /dev/null 2>&1
 fi
 
 '''.format(
